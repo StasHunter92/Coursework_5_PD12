@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 class Skill(ABC):
     """
-    Базовый класс умения
+    Abstract Skill class
     """
     user = None
     target = None
