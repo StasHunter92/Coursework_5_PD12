@@ -60,5 +60,5 @@ jobs:
           username: ${{ secrets.HOST_USERNAME }}
           password: ${{ secrets.HOST_PASSWORD }}
           script: |
-            cd homework_26_docker_ci
+            cd coursework_5_docker
             echo ${{ secrets.HOST_PASSWORD }} | sudo -S docker-compose up -d
