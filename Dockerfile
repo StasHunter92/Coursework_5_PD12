@@ -4,7 +4,7 @@ WORKDIR /skywars
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY app app/
+COPY application app/
 COPY templates templates/
 COPY app.py .
 COPY wsgi.py .

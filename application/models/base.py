@@ -1,4 +1,4 @@
-from app.models.unit import BaseUnit
+from application.models.unit import BaseUnit
 
 
 class BaseSingleton(type):

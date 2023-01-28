@@ -3,8 +3,8 @@ from __future__ import annotations
 import random
 from abc import ABC, abstractmethod
 
-from app.models.classes import UnitClass
-from app.models.equipment import Weapon, Armor
+from application.models.classes import UnitClass
+from application.models.equipment import Weapon, Armor
 
 from typing import Optional
 

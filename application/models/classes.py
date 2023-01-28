@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from app.models.skills import Skill, FuryPunch, HardShot
+from application.models.skills import Skill, FuryPunch, HardShot
 
 
 @dataclass
