@@ -171,7 +171,6 @@ class EnemyUnit(BaseUnit):
     """
     An enemy unit class
     """
-
     def hit(self, target: BaseUnit) -> str:
         """
         Hits the target unit with weapon and/or skill and calculates damage based on target's armor
