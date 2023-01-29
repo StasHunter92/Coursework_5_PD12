@@ -28,7 +28,7 @@ class Skill(ABC):
 
     @property
     @abstractmethod
-    def stamina(self) -> int:
+    def stamina(self) -> float:
         """
         Get the stamina cost of using the skill
 
@@ -38,7 +38,7 @@ class Skill(ABC):
 
     @property
     @abstractmethod
-    def damage(self) -> int:
+    def damage(self) -> float:
         """
         Get the damage caused by the skill
 
@@ -76,39 +76,39 @@ class Skill(ABC):
 
         if self._is_stamina_enough:
             return self.skill_effect()
-        return f"{self.user.name} попытался использовать {self.name}, но у него не хватило выносливости"
+        return f"{self.user.name} попытался использовать {self.name}, но у него не хватило выносливости."
 
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Create skills
 class FuryPunch(Skill):
     name: str = "Свирепый пинок"
-    stamina: int = 6
-    damage: int = 12
+    stamina: float = 6.0
+    damage: float = 12.0
 
     def skill_effect(self):
         self.user.stamina -= self.stamina
         self.target.hp -= self.damage
-        return f"{self.user.name} использует {self.name} и наносит {self.damage} урона"
+        return f"{self.user.name} использует {self.name} и наносит {self.damage} урона."
 
 
 class HardShot(Skill):
     name: str = "Мощный укол"
-    stamina: int = 5
-    damage: int = 15
+    stamina: float = 5.0
+    damage: float = 15.0
 
     def skill_effect(self):
         self.user.stamina -= self.stamina
         self.target.hp -= self.damage
-        return f"{self.user.name} использует {self.name} и наносит {self.damage} урона"
+        return f"{self.user.name} использует {self.name} и наносит {self.damage} урона."
 
 
 class FireballShot(Skill):
     name: str = "Метеоритный удар"
-    stamina: int = 15
-    damage: int = 30
+    stamina: float = 15.0
+    damage: float = 30.0
 
     def skill_effect(self):
         self.user.stamina -= self.stamina
         self.target.hp -= self.damage
-        return f"{self.user.name} использует {self.name} и наносит {self.damage} урона"
+        return f"{self.user.name} использует {self.name} и наносит {self.damage} урона."

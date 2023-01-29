@@ -47,13 +47,13 @@ class Arena(metaclass=BaseSingleton):
             return None
 
         if self.player.hp <= 0 and self.enemy.hp <= 0:
-            self.battle_result = "Ничья"
+            self.battle_result = "Ничья."
 
         elif self.player.hp > 0 and self.enemy.hp <= 0:
-            self.battle_result = "Игрок выиграл битву"
+            self.battle_result = "Игрок выиграл битву."
 
         elif self.enemy.hp > 0 and self.player.hp <= 0:
-            self.battle_result = "Игрок проиграл битву"
+            self.battle_result = "Игрок проиграл битву."
 
         return self._end_game()
 
@@ -63,7 +63,7 @@ class Arena(metaclass=BaseSingleton):
 
         :return: Battle result
         """
-        self._instances = {}
+        self._instances: dict = {}
         self.game_is_running = False
         return self.battle_result
 
