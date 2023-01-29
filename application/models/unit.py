@@ -117,6 +117,8 @@ class BaseUnit(ABC):
         """
         if damage > 0:
             self.hp: float = self.hp - damage
+            if self.hp < 0:
+                self.hp = 0
             return self.hp
         return None
 
