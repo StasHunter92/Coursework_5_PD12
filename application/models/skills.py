@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
@@ -6,51 +7,84 @@ if TYPE_CHECKING:
     from application.models.unit import BaseUnit
 
 
+# ----------------------------------------------------------------------------------------------------------------------
+# Create abstract skill class
 class Skill(ABC):
     """
-    Abstract Skill class
+    Abstract base class for skills
     """
     user = None
     target = None
 
     @property
     @abstractmethod
-    def name(self):
+    def name(self) -> str:
+        """
+        Get the name of the skill
+
+        :return: Name of the skill
+        """
         pass
 
     @property
     @abstractmethod
-    def stamina(self):
+    def stamina(self) -> int:
+        """
+        Get the stamina cost of using the skill
+
+        :return: Stamina cost of using the skill
+        """
         pass
 
     @property
     @abstractmethod
-    def damage(self):
+    def damage(self) -> int:
+        """
+        Get the damage caused by the skill
+
+        :return: Damage caused by the skill
+        """
         pass
 
     @abstractmethod
     def skill_effect(self) -> str:
+        """
+        Get the effect of using the skill
+
+        :return: Effect of using the skill
+        """
         pass
 
-    def _is_stamina_enough(self):
+    def _is_stamina_enough(self) -> bool:
+        """
+        Check if user has enough stamina to use the skill
+
+        :return: True if user has enough stamina, False otherwise
+        """
         return self.user.stamina >= self.stamina
 
     def use(self, user: BaseUnit, target: BaseUnit) -> str:
         """
-        Проверка, достаточно ли выносливости у игрока для применения умения.
-        Для вызова скилла везде используем просто use
+        Use the skill
+
+        :param user: The user of the skill
+        :param target: The target of the skill
+        :return: Result of using the skill
         """
         self.user = user
         self.target = target
+
         if self._is_stamina_enough:
             return self.skill_effect()
-        return f"{self.user.name} попытался использовать {self.name} но у него не хватило выносливости."
+        return f"{self.user.name} попытался использовать {self.name}, но у него не хватило выносливости"
 
 
+# ----------------------------------------------------------------------------------------------------------------------
+# Create skills
 class FuryPunch(Skill):
-    name = "Свирепый пинок"
-    stamina = 6
-    damage = 12
+    name: str = "Свирепый пинок"
+    stamina: int = 6
+    damage: int = 12
 
     def skill_effect(self):
         self.user.stamina -= self.stamina
@@ -59,9 +93,20 @@ class FuryPunch(Skill):
 
 
 class HardShot(Skill):
-    name = "Мощный укол"
-    stamina = 5
-    damage = 15
+    name: str = "Мощный укол"
+    stamina: int = 5
+    damage: int = 15
+
+    def skill_effect(self):
+        self.user.stamina -= self.stamina
+        self.target.hp -= self.damage
+        return f"{self.user.name} использует {self.name} и наносит {self.damage} урона"
+
+
+class FireballShot(Skill):
+    name: str = "Метеоритный удар"
+    stamina: int = 15
+    damage: int = 30
 
     def skill_effect(self):
         self.user.stamina -= self.stamina
