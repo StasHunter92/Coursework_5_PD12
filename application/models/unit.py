@@ -14,7 +14,6 @@ class BaseUnit(ABC):
     """
     Base unit class
     """
-
     def __init__(self, name: str, unit_class: UnitClass):
         """
         Initialize Unit class using UnitClass properties
@@ -148,7 +147,6 @@ class PlayerUnit(BaseUnit):
     """
     A player unit class
     """
-
     def hit(self, target: BaseUnit) -> str:
         """
         Hits the target unit with weapon and calculates damage based on target's armor
