@@ -10,4 +10,5 @@ COPY templates templates/
 COPY app.py .
 COPY wsgi.py .
 
-CMD flask run -h 0.0.0.0 -p 5050
+EXPOSE 5000
+CMD ["gunicorn", "--workers=4", "--bind=0.0.0.0:5000", "wsgi:app"]
