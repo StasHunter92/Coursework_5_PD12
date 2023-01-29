@@ -100,9 +100,12 @@ class Arena(metaclass=BaseSingleton):
 
         :return: The result of the Player's hit and the next turn status as a string
         """
-        result: str = self.player.hit(self.enemy)
-        next_turn: Optional[str] = self.next_turn()
-        return f"{result}\n{next_turn}"
+        result: Optional[str] = self._check_players_hp()
+        if not result:
+            result: str = self.player.hit(self.enemy)
+            next_turn: Optional[str] = self.next_turn()
+            return f"{result}\n{next_turn}"
+        return result
 
     def player_use_skill(self) -> str:
         """
@@ -110,6 +113,9 @@ class Arena(metaclass=BaseSingleton):
 
         :return: The result of the player's hit and the next turn status as a string
         """
-        result: str = self.player.use_skill(self.enemy)
-        next_turn: Optional[str] = self.next_turn()
-        return f"{result}\n{next_turn}"
+        result: Optional[str] = self._check_players_hp()
+        if not result:
+            result: str = self.player.use_skill(self.enemy)
+            next_turn: Optional[str] = self.next_turn()
+            return f"{result}\n{next_turn}"
+        return result
