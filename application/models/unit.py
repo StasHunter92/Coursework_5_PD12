@@ -44,7 +44,7 @@ class BaseUnit(ABC):
         :param value: HP value
         :return: None
         """
-        self._hp: float = value
+        self._hp = value
 
     @property
     def stamina(self) -> float:
@@ -63,7 +63,7 @@ class BaseUnit(ABC):
         :param value: Stamina value
         :return: None
         """
-        self._stamina: float = value
+        self._stamina = value
 
     def equip_weapon(self, weapon: Weapon) -> str:
         """
@@ -72,7 +72,7 @@ class BaseUnit(ABC):
         :param weapon: Unit weapon
         :return: Weapon equipped successfully
         """
-        self.weapon: Weapon = weapon
+        self.weapon = weapon
         return f"{self.name} экипирован оружием {self.weapon.name}"
 
     def equip_armor(self, armor: Armor) -> str:
@@ -82,7 +82,7 @@ class BaseUnit(ABC):
         :param armor: Unit armor
         :return: Armor equipped successfully
         """
-        self.armor: Armor = armor
+        self.armor = armor
         return f"{self.name} экипирован броней {self.armor.name}"
 
     def _count_damage(self, target: BaseUnit) -> float:
@@ -100,12 +100,12 @@ class BaseUnit(ABC):
                 damage: float = attack_damage - target_defense
                 target.stamina -= self.armor.stamina_per_turn
             else:
-                damage: float = attack_damage
-            damage: float = round(damage, 1)
+                damage = attack_damage
+            damage = round(damage, 1)
             self.stamina -= self.weapon.stamina_per_hit
             target.get_damage(damage)
         else:
-            damage: float = 0.0
+            damage = 0.0
 
         return damage
 
@@ -136,7 +136,7 @@ class BaseUnit(ABC):
         :return: A message indicating if the skill was used or not
         """
         if self._is_skill_used:
-            return f"Навык использован"
+            return f"Навык использован."
         else:
             self._is_skill_used = True
             return self.unit_class.skill.use(user=self, target=target)
